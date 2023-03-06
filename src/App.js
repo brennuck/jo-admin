@@ -73,26 +73,27 @@ const App = () => {
                 >
                     <Input />
                 </Form.Item>
+                <Select
+                    placeholder="Countdown"
+                    onChange={(value) => updateCountdown(value)}
+                    options={[
+                        {
+                            value: true,
+                            label: "Keep counting",
+                        },
+                        {
+                            value: false,
+                            label: "Remove countdown",
+                        },
+                    ]}
+                    style={{ marginBottom: "24px" }}
+                />
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
                 </Form.Item>
             </Form>
-            <Select
-                placeholder="Countdown"
-                onChange={(value) => updateCountdown(value)}
-                options={[
-                    {
-                        value: true,
-                        label: "Keep counting",
-                    },
-                    {
-                        value: false,
-                        label: "Remove countdown",
-                    },
-                ]}
-            />
         </div>
     );
 };
