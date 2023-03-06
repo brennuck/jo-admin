@@ -47,7 +47,6 @@ const App = () => {
             <Form
                 name="updatez"
                 onFinish={({ color, update }) => addUpdate({ update, color })}
-                // onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
                 <Form.Item
