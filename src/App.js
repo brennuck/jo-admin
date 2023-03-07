@@ -1,9 +1,10 @@
-import React from "react";
-import { Select, message, Form, Input, Button } from "antd";
+import React, { useState } from "react";
+import { Select, message, Form, Input, Button, Divider } from "antd";
 import "./index.css";
 
 const App = () => {
     const baseUrl = "https://frozen-dawn-71816.herokuapp.com";
+    const [textsButton, setTextsButton] = useState(true);
 
     const updateCountdown = async (value) => {
         await fetch(`${baseUrl}/countdown/update`, {
@@ -39,6 +40,17 @@ const App = () => {
                     resp.status === 200 &&
                     message.success("Successfully added update")
             )
+            .catch(() => message.error("Failed to add update"));
+    };
+
+    const sendTexts = async () => {
+        await fetch(`${baseUrl}/countdown/text`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+            .then((resp) => console.log("res", resp))
             .catch(() => message.error("Failed to add update"));
     };
 
@@ -94,6 +106,18 @@ const App = () => {
                     </Button>
                 </Form.Item>
             </Form>
+            <Divider />
+            {textsButton === true && (
+                <>
+                    <Button onClick={() => setTextsButton(false)}>
+                        Unlock texts
+                    </Button>
+                    <Divider />
+                </>
+            )}
+            <Button disabled={textsButton} onClick={() => sendTexts()}>
+                Send texts
+            </Button>
         </div>
     );
 };
