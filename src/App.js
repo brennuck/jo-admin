@@ -50,7 +50,7 @@ const App = () => {
                 "content-type": "application/json",
             },
         })
-            .then((resp) => console.log("res", resp))
+            .then(() => message.success("Successfully sent texts"))
             .catch(() => message.error("Failed to add update"));
     };
 
